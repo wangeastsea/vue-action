@@ -15,6 +15,8 @@
 import wForm from '@/components/w-form'
 import wFormItem from '@/components/w-form-item'
 import wInput from '@/components/w-input'
+import create from '@/utils/create.js'
+import wNotice from '@/components/w-notice/index.vue'
 export default {
     components: {
         wForm,
@@ -55,7 +57,12 @@ export default {
         submitAction() {
             this.$refs['ruleForm'].validate(valid => {
                 if (valid) {
-                    alert('有效')
+                    const notice = create(wNotice, {
+                        title: 'title',
+                        message: 'success',
+                        duration: 1000
+                    })
+                    notice.show()
                 } else {
                     alert('校验失败！')
                 }
